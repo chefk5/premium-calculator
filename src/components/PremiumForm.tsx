@@ -9,7 +9,7 @@ const PremiumForm = (props: Props) => {
   return (
     <>
       <View style={[mainStyles.card]}>
-        <Text style={styles.label}>Coin Price</Text>
+        <Text style={styles.label}>Price</Text>
 
         <TextInput
           style={styles.input}
@@ -18,7 +18,7 @@ const PremiumForm = (props: Props) => {
           // onChangeText={(text) => setCoinPrice(text)}
           keyboardType="numeric"
         />
-        <Text style={styles.label}>Coin Price</Text>
+        <Text style={styles.label}>Weight</Text>
 
         <TextInput
           style={styles.input}
@@ -27,7 +27,7 @@ const PremiumForm = (props: Props) => {
           //  onChangeText={(text) => setCoinWeight(text)}
           keyboardType="numeric"
         />
-        <Text style={styles.label}>Coin Price</Text>
+        <Text style={styles.label}>Purity</Text>
 
         <TextInput
           style={styles.input}
@@ -60,6 +60,8 @@ const styles = StyleSheet.create({
   },
   label: {
     color: colors.primary,
+    paddingBottom: 5,
+    paddingTop: 10,
   },
   result: {
     justifyContent: "center",

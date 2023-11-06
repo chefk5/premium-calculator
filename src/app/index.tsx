@@ -17,8 +17,8 @@ import Header from "../components/Header";
 export default function Page() {
   return (
     <SafeAreaView style={styles.main}>
-      <Header />
       <ScrollView style={styles.content}>
+        <Header />
         <LivePriceCard />
         <PremiumForm />
       </ScrollView>
