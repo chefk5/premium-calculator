@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { mainStyles, fontSizes } from "../styles/theme";
 import StyledText from "./common/styledText";
