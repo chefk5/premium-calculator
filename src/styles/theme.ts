@@ -3,10 +3,9 @@ import { StyleSheet } from "react-native";
 export const colors = {
   background: "#000",
   backgroundSecondary: "#2a2827",
+  ternary: "#978055",
+  secondary: "#fddea0",
   primary: "#d4b473",
-  text: "#978055",
-  secondary: "#d1af70",
-  ternary: "#fddea0",
 };
 
 export const fontSizes = {

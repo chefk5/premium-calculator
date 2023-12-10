@@ -30,7 +30,7 @@ const StyledText = (props: Props) => {
         style={[
           styles.text,
           { ...customStyles },
-          { color: color || colors.text },
+          { color: color || colors.primary },
           { fontSize: size || fontSizes.md },
           { fontWeight: fontWeight || "500" },
         ]}
