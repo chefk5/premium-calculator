@@ -9,7 +9,7 @@ import { calculateGoldPremium } from "../utils/calculators";
 type Props = {};
 
 const PremiumForm = (props: Props) => {
-  const examplePremium: string = calculateGoldPremium({
+  const examplePremium = calculateGoldPremium({
     purchasePrice: 2029.86,
     coinWeightInGrams: 31.1,
     spotPrice: 1950.86,

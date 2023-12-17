@@ -13,6 +13,9 @@ import LivePriceCard from "../components/LivePriceCard";
 import PremiumForm from "../components/PremiumForm";
 import { ScrollView } from "react-native-gesture-handler";
 import Header from "../components/Header";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function Page() {
   return (

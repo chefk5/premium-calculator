@@ -15,6 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.14.1",
     "expo": "^49.0.0",
     "expo-constants": "~14.4.2",
     "expo-linking": "~5.0.2",
@@ -37,6 +38,7 @@
     "@types/react-native": "^0.72.0",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
+    "axios": "^1.6.2",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-react": "^1.1.7",
