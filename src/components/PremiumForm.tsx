@@ -1,54 +1,135 @@
-import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  Keyboard,
+} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import { mainStyles, colors, fontSizes } from "../styles/theme";
-import StyledText from "./common/styledText";
 import PremiumResult from "./PremiumResult";
 import CommonBtn from "./common/CommonBtn";
 import { calculateGoldPremium } from "../utils/calculators";
+import { GoldData, calculatedGoldInfo } from "../types";
+import { FilteredInput } from "./common/FilteredInput";
+import { TextInput } from "react-native-gesture-handler";
 
-type Props = {};
+type Props = {
+  livePrice: number | undefined;
+  isLoading: boolean;
+  error: Error | null;
+  currency: string;
+};
 
-const PremiumForm = (props: Props) => {
-  const examplePremium = calculateGoldPremium({
-    purchasePrice: 2029.86,
-    coinWeightInGrams: 31.1,
-    spotPrice: 1950.86,
-    purity: 90,
+const PremiumForm = ({ livePrice, isLoading, error, currency }: Props) => {
+  const [goldData, setGoldData] = useState<GoldData>({
+    spotPrice: livePrice ?? "",
+    purchasePrice: "",
+    coinWeightInGrams: "",
+    purity: "",
   });
-  console.log(examplePremium);
+
+  const [goldCalculations, setGoldCalculations] = useState<calculatedGoldInfo>({
+    premiumPrice: "0",
+    premiumPercent: "0",
+  });
+
+  const updateGoldData = async (value: string, type: keyof GoldData) => {
+    setGoldData((prevData) => ({ ...prevData, [type]: value }));
+  };
+
+  const calculateGoldData = () => {
+    const { premiumPercent, premiumPrice } = calculateGoldPremium(goldData);
+
+    setGoldCalculations({
+      premiumPercent,
+      premiumPrice,
+    });
+  };
+
+  useEffect(() => {
+    updateGoldData(String(livePrice ?? ""), "spotPrice");
+  }, [livePrice]);
+
+  const inputRefs = useRef<TextInput[]>([]);
+
+  const focusNextInput = (index: number) => {
+    if (inputRefs.current[index + 1]) {
+      inputRefs.current[index + 1].focus();
+    } else {
+      Keyboard.dismiss();
+    }
+  };
+
   return (
     <>
       <View style={[mainStyles.card]}>
-        <Text style={styles.label}>Price</Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text style={styles.label}>Market Price</Text>
+          {isLoading && (
+            <ActivityIndicator
+              size={"small"}
+              color={colors.primary}
+              style={{ marginLeft: 5 }}
+            />
+          )}
+          {error && (
+            <Text style={styles.labelError}>
+              (Failed to fetch market price)
+            </Text>
+          )}
+        </View>
 
-        <TextInput
-          style={styles.input}
-          placeholder="Coin Price"
-          placeholderTextColor={colors.ternary}
-          // onChangeText={(text) => setCoinPrice(text)}
-          keyboardType="numeric"
+        <FilteredInput
+          value={String(goldData.spotPrice)}
+          placeholder="Market / Spot Price"
+          onChangeText={(value) => updateGoldData(value, "spotPrice")}
+          keyboardType="numbers-and-punctuation"
+          onSubmitEditing={() => focusNextInput(0)}
+          inputRef={(element: TextInput) => {
+            inputRefs.current[0] = element;
+          }}
+        />
+
+        <Text style={styles.label}>Price ({currency})</Text>
+        <FilteredInput
+          value={String(goldData.purchasePrice)}
+          placeholder="How much did you pay?"
+          onChangeText={(value) => updateGoldData(value, "purchasePrice")}
+          keyboardType="numbers-and-punctuation"
+          onSubmitEditing={() => focusNextInput(1)}
+          inputRef={(element: TextInput) => {
+            inputRefs.current[1] = element;
+          }}
         />
         <Text style={styles.label}>Weight</Text>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Coin Weight (in grams)"
-          placeholderTextColor={colors.ternary}
-          //  onChangeText={(text) => setCoinWeight(text)}
-          keyboardType="numeric"
+        <FilteredInput
+          value={String(goldData.coinWeightInGrams)}
+          placeholder="Weight (in grams)"
+          onChangeText={(value) => updateGoldData(value, "coinWeightInGrams")}
+          keyboardType="numbers-and-punctuation"
+          onSubmitEditing={() => focusNextInput(2)}
+          inputRef={(element: TextInput) => {
+            inputRefs.current[2] = element;
+          }}
         />
         <Text style={styles.label}>Purity</Text>
-
-        <TextInput
-          style={styles.input}
-          placeholderTextColor={colors.ternary}
+        <FilteredInput
+          value={String(goldData.purity)}
           placeholder="Gold Purity (%)"
-          onChangeText={(text) => null}
-          keyboardType="numeric"
+          onChangeText={(value) => updateGoldData(value, "purity")}
+          keyboardType="numbers-and-punctuation"
+          onSubmitEditing={() => focusNextInput(3)}
+          inputRef={(element: TextInput) => {
+            inputRefs.current[3] = element;
+          }}
         />
-        <CommonBtn />
+        <CommonBtn onPressFunc={() => calculateGoldData()} />
       </View>
-      <PremiumResult />
+      <PremiumResult
+        premiumPrice={goldCalculations.premiumPrice}
+        premiumPercentage={goldCalculations.premiumPercent}
+      />
     </>
   );
 };
@@ -69,5 +150,12 @@ const styles = StyleSheet.create({
     color: colors.primary,
     paddingBottom: 5,
     paddingTop: 10,
+    fontSize: fontSizes.md,
+  },
+  labelError: {
+    color: colors.error,
+    paddingBottom: 5,
+    paddingTop: 10,
+    marginLeft: 5,
   },
 });

@@ -6,10 +6,8 @@ export type goldToBeCalculated = {
 };
 
 export type calculatedGoldInfo = {
-  premiumPercent: number | string;
-  pureGoldContentInOunces: number;
-  pricePremium: number;
-  totalPrice: number;
+  premiumPercent: string;
+  premiumPrice: string;
 };
 
 type SpreadProfilePrices = {
@@ -32,3 +30,10 @@ export type SpreadDataEntry = {
 };
 
 export type SpreadDataArray = SpreadDataEntry[];
+
+export type GoldData = {
+  purchasePrice: number | "";
+  coinWeightInGrams: number | "";
+  spotPrice: number | "";
+  purity: number | "";
+};

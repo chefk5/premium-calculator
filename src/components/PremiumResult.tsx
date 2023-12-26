@@ -3,20 +3,27 @@ import React from "react";
 import { mainStyles } from "../styles/theme";
 import StyledText from "./common/styledText";
 
-type Props = {};
+type Props = {
+  premiumPrice: string;
+  premiumPercentage: string;
+};
 
-const PremiumResult = (props: Props) => {
+const PremiumResult = ({ premiumPrice, premiumPercentage }: Props) => {
   return (
     <View style={[mainStyles.card]}>
       <View style={styles.result}>
         <StyledText customStyles={mainStyles.marginV}>
           Premium price:
         </StyledText>
-        <StyledText customStyles={mainStyles.marginV}>1212 $</StyledText>
+        <StyledText customStyles={mainStyles.marginV}>
+          {premiumPrice} $
+        </StyledText>
         <StyledText customStyles={mainStyles.marginV}>
           Premium percentage:
         </StyledText>
-        <StyledText customStyles={mainStyles.marginV}>23%</StyledText>
+        <StyledText customStyles={mainStyles.marginV}>
+          {premiumPercentage}%
+        </StyledText>
       </View>
     </View>
   );

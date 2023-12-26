@@ -2,10 +2,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchPrices } from "../services/prices";
 
-const useCustomQuery = () => {
+const useCustomQuery = (currency: string) => {
   return useQuery({
     queryKey: ["products"],
-    queryFn: fetchPrices,
+    queryFn: () => fetchPrices(currency),
   });
 };
 

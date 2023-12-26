@@ -45,6 +45,6 @@ export default StyledText;
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.text,
+    color: colors.primary,
   },
 });

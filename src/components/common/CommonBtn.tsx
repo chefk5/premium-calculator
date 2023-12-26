@@ -3,11 +3,14 @@ import React from "react";
 import StyledText from "./styledText";
 import { colors, mainStyles } from "../../styles/theme";
 
-type Props = {};
+type Props = {
+  onPressFunc: () => void;
+};
 
-const CommonBtn = (props: Props) => {
+const CommonBtn = ({ onPressFunc }: Props) => {
   return (
     <Pressable
+      onPress={onPressFunc}
       style={({ pressed }) => [
         styles.container,
         { backgroundColor: pressed ? colors.primary : colors.ternary },

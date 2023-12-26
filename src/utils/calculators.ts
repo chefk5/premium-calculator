@@ -1,39 +1,37 @@
-import { calculatedGoldInfo, goldToBeCalculated } from "../types";
+import { GoldData, calculatedGoldInfo, goldToBeCalculated } from "../types";
 
 export function calculateGoldPremium({
   purchasePrice,
   coinWeightInGrams,
   spotPrice,
   purity,
-}: goldToBeCalculated): calculatedGoldInfo {
+}: GoldData): calculatedGoldInfo {
   // Convert the weight from grams to troy ounces
-  const coinWeightInOunces = coinWeightInGrams / 31.1;
+  const coinWeightInOunces = Number(coinWeightInGrams) / 31.1;
 
   // Calculate the actual gold content based on purity
-  const pureGoldContentInOunces = coinWeightInOunces * (purity / 100);
+  const pureGoldContentInOunces = coinWeightInOunces * (Number(purity) / 100);
 
   // Step 1: Take the purchase price of the coin and divide it by the weight in troy ounces
-  const pricePerOunce = purchasePrice / coinWeightInOunces;
+  const pricePerOunce = Number(purchasePrice) / coinWeightInOunces;
 
   // Step 2: Take the remainder from step 1 and subtract the current spot price of an ounce
-  const remainder = pricePerOunce - spotPrice;
+  const remainder = pricePerOunce - Number(spotPrice);
 
   // Step 3: Take the remainder from step 2 and divide it by the current spot price
-  const percentDecimal = remainder / spotPrice;
+  const percentDecimal = remainder / Number(spotPrice);
 
   // Step 4: Convert the decimal number from step 3 to a percent
   const premiumPercent = (percentDecimal * 100).toFixed(2);
 
   // Calculate the total price based on the pure gold content
-  const totalPrice = spotPrice * pureGoldContentInOunces;
+  const totalPrice = Number(spotPrice) * pureGoldContentInOunces;
 
   // Calculate the price premium
-  const pricePremium = purchasePrice - totalPrice;
+  const premiumPrice = (Number(purchasePrice) - totalPrice).toFixed(2);
 
   return {
     premiumPercent,
-    pureGoldContentInOunces,
-    pricePremium,
-    totalPrice,
+    premiumPrice,
   };
 }

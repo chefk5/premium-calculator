@@ -1,23 +1,18 @@
 import { baseURL } from "../constants";
 import axios, { AxiosResponse } from "axios";
-import { SpreadDataArray, SpreadDataEntry } from "../types";
-import { useContext } from "react";
-import { currencyContext } from "../app/_layout";
+import { SpreadDataEntry } from "../types";
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
 });
-export const fetchPrices = async (): Promise<SpreadDataEntry[]> => {
+export const fetchPrices = async (currency: string): Promise<number> => {
   const response: AxiosResponse<SpreadDataEntry[]> = await axiosInstance.get(
-    "",
+    `/${currency}`,
   );
-  return response.data || [];
-};
 
-// export const searchProducts = async (
-//   term: string,
-// ): Promise<SpreadDataArray> => {
-//   const response: AxiosResponse<{ products: Product[] }> =
-//     await axiosInstance.get(`/products/search?q=${term}`);
-//   return response.data.products;
-// };
+  const ask = response.data[0]?.spreadProfilePrices[0]?.ask;
+  const bid = response.data[0]?.spreadProfilePrices[0]?.bid;
+  const price = Number(((ask + bid) / 2).toFixed(2));
+
+  return price || 0;
+};

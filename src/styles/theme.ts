@@ -6,6 +6,7 @@ export const colors = {
   ternary: "#978055",
   secondary: "#fddea0",
   primary: "#d4b473",
+  error: "#ff0000",
 };
 
 export const fontSizes = {
