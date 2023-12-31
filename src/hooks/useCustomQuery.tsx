@@ -4,7 +4,7 @@ import { fetchPrices } from "../services/prices";
 
 const useCustomQuery = (currency: string) => {
   return useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", currency],
     queryFn: () => fetchPrices(currency),
   });
 };

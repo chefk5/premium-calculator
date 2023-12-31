@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
-import { mainStyles } from "../styles/theme";
-import StyledText from "./common/styledText";
+import { mainStyles } from "../../styles/theme";
+import StyledText from "../common/styledText";
 
 type Props = {
   premiumPrice: string;

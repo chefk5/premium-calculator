@@ -5,7 +5,7 @@ import LivePriceCard from "./LivePriceCard";
 
 describe("renders Products card", () => {
   it("displays the passed props with all detials", () => {
-    const { getByText } = render(<LivePriceCard />);
+    const { getByText } = render(<LivePriceCard livePrice={undefined} />);
 
     expect(getByText("Live Price")).toBeVisible();
   });

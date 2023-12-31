@@ -13,22 +13,19 @@ export const currencyContext = createContext<ContextType | undefined>(
 
 export default function Layout() {
   const queryClient = new QueryClient();
-  const [currency, setCurrency] = useState<ContextType["currency"]>("USD");
 
   return (
     <QueryClientProvider client={queryClient}>
-      <currencyContext.Provider value={{ currency, setCurrency }}>
-        <SafeAreaView style={styles.main}>
-          <Stack>
-            <Stack.Screen
-              name="index"
-              options={{
-                headerShown: false,
-              }}
-            />
-          </Stack>
-        </SafeAreaView>
-      </currencyContext.Provider>
+      <SafeAreaView style={styles.main}>
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack>
+      </SafeAreaView>
     </QueryClientProvider>
   );
 }

@@ -9,10 +9,10 @@ type Props = {};
 const Header = (props: Props) => {
   return (
     <View style={styles.container}>
-      <StyledText size={fontSizes.sm}>Premium Calculator</StyledText>
-      <Pressable onPress={() => console.log("he")}>
+      <StyledText size={fontSizes.md}>Premium Calculator</StyledText>
+      {/* <Pressable onPress={() => console.log("he")}>
         <Feather name="settings" size={24} color={colors.secondary} />
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 };

@@ -1,3 +1,5 @@
+import { RefetchOptions, QueryObserverResult } from "@tanstack/react-query";
+
 export type goldToBeCalculated = {
   purchasePrice: number;
   coinWeightInGrams: number;

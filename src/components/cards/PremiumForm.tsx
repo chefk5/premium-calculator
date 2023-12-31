@@ -6,22 +6,27 @@ import {
   Keyboard,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import { mainStyles, colors, fontSizes } from "../styles/theme";
+import { mainStyles, colors, fontSizes } from "../../styles/theme";
 import PremiumResult from "./PremiumResult";
-import CommonBtn from "./common/CommonBtn";
-import { calculateGoldPremium } from "../utils/calculators";
-import { GoldData, calculatedGoldInfo } from "../types";
-import { FilteredInput } from "./common/FilteredInput";
+import CommonBtn from "../common/CommonBtn";
+import { calculateGoldPremium } from "../../utils/calculators";
+import { GoldData, calculatedGoldInfo } from "../../types";
+import { FilteredInput } from "../common/FilteredInput";
 import { TextInput } from "react-native-gesture-handler";
+import CurrencyBtns from "../CurrencyBtns";
+import { useSettingsStore } from "../../app/stores/useSettingsStore";
+import { RefetchOptions, QueryObserverResult } from "@tanstack/react-query";
 
 type Props = {
   livePrice: number | undefined;
   isLoading: boolean;
   error: Error | null;
-  currency: string;
 };
 
-const PremiumForm = ({ livePrice, isLoading, error, currency }: Props) => {
+const PremiumForm = ({ livePrice, isLoading, error }: Props) => {
+  const currency = useSettingsStore((state) => state.currency);
+  const setCurrency = useSettingsStore((state) => state.setCurrency);
+
   const [goldData, setGoldData] = useState<GoldData>({
     spotPrice: livePrice ?? "",
     purchasePrice: "",
@@ -61,9 +66,14 @@ const PremiumForm = ({ livePrice, isLoading, error, currency }: Props) => {
     }
   };
 
+  const [country, setCountry] = React.useState();
+
   return (
     <>
       <View style={[mainStyles.card]}>
+        <Text style={styles.label}>Currency</Text>
+        <CurrencyBtns setCurrency={setCurrency} />
+
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Text style={styles.label}>Market Price</Text>
           {isLoading && (

@@ -1,10 +1,10 @@
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
-import { mainStyles, fontSizes } from "../styles/theme";
-import StyledText from "./common/styledText";
+import { mainStyles, fontSizes } from "../../styles/theme";
+import StyledText from "../common/styledText";
 
 type Props = {
-  livePrice: number;
+  livePrice: number | undefined;
 };
 
 const LivePriceCard = ({ livePrice }: Props) => {
@@ -19,7 +19,7 @@ const LivePriceCard = ({ livePrice }: Props) => {
             <StyledText size={fontSizes.bg}>{livePrice}$/oz</StyledText>
           </View>
         </View>
-        <StyledText size={fontSizes.sm}>Last updated: 13:34</StyledText>
+        {/* <StyledText size={fontSizes.sm}>Last updated: 13:34</StyledText> */}
       </View>
     </>
   );
