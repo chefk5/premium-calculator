@@ -25,19 +25,17 @@ type Props = {
 const StyledText = (props: Props) => {
   const { children, size, fontWeight, color, customStyles } = props;
   return (
-    <View>
-      <Text
-        style={[
-          styles.text,
-          { ...customStyles },
-          { color: color || colors.primary },
-          { fontSize: size || fontSizes.md },
-          { fontWeight: fontWeight || "500" },
-        ]}
-      >
-        {children}
-      </Text>
-    </View>
+    <Text
+      style={[
+        styles.text,
+        { ...customStyles },
+        { color: color || colors.primary },
+        { fontSize: size || fontSizes.md },
+        { fontWeight: fontWeight || "500" },
+      ]}
+    >
+      {children}
+    </Text>
   );
 };
 

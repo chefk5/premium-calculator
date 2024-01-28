@@ -3,6 +3,8 @@ import { Stack } from "expo-router";
 import { createContext, useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { colors } from "../styles/theme";
+import { BlurView } from "expo-blur";
+
 type ContextType = {
   currency: string;
   setCurrency: (currency: string) => void;
@@ -16,16 +18,19 @@ export default function Layout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={styles.main}>
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Stack>
-      </SafeAreaView>
+      <Stack>
+        <Stack.Screen
+          name="index"
+          options={{
+            title: "Premium Calculator",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: colors.background,
+            },
+            headerTintColor: colors.primary,
+          }}
+        />
+      </Stack>
     </QueryClientProvider>
   );
 }

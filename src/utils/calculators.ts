@@ -1,4 +1,4 @@
-import { GoldData, calculatedGoldInfo, goldToBeCalculated } from "../types";
+import { GoldData, calculatedGoldInfo } from "../types";
 
 export function calculateGoldPremium({
   purchasePrice,

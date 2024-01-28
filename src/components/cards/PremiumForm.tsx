@@ -15,7 +15,6 @@ import { FilteredInput } from "../common/FilteredInput";
 import { TextInput } from "react-native-gesture-handler";
 import CurrencyBtns from "../CurrencyBtns";
 import { useSettingsStore } from "../../app/stores/useSettingsStore";
-import { RefetchOptions, QueryObserverResult } from "@tanstack/react-query";
 
 type Props = {
   livePrice: number | undefined;

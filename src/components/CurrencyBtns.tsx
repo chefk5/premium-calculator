@@ -1,4 +1,4 @@
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Pressable } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../styles/theme";
 import StyledText from "./common/styledText";
@@ -19,7 +19,7 @@ const CurrencyBtns = ({ setCurrency }: Props) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
+      <Pressable
         style={[
           styles.button,
           selectedCurrencyBtn === 0 && styles.selectedCurrencyButton,
@@ -27,9 +27,9 @@ const CurrencyBtns = ({ setCurrency }: Props) => {
         onPress={() => handleBtnPress(0)}
       >
         <StyledText color={colors.secondary}>USD $</StyledText>
-      </TouchableOpacity>
+      </Pressable>
 
-      <TouchableOpacity
+      <Pressable
         style={[
           styles.button,
           selectedCurrencyBtn === 1 && styles.selectedCurrencyButton,
@@ -37,9 +37,9 @@ const CurrencyBtns = ({ setCurrency }: Props) => {
         onPress={() => handleBtnPress(1)}
       >
         <StyledText color={colors.secondary}>EUR €</StyledText>
-      </TouchableOpacity>
+      </Pressable>
 
-      <TouchableOpacity
+      <Pressable
         style={[
           styles.button,
           selectedCurrencyBtn === 2 && styles.selectedCurrencyButton,
@@ -47,7 +47,7 @@ const CurrencyBtns = ({ setCurrency }: Props) => {
         onPress={() => handleBtnPress(2)}
       >
         <StyledText color={colors.secondary}>GBP £</StyledText>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };

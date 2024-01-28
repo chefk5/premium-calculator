@@ -1,4 +1,4 @@
-import React, { useRef, FC, RefObject } from "react";
+import React, { FC } from "react";
 import { TextInput, StyleSheet, TextInputProps } from "react-native";
 import { colors, fontSizes } from "../../styles/theme";
 
