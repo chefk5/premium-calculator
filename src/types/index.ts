@@ -7,7 +7,7 @@ export type goldToBeCalculated = {
   purity: number;
 };
 
-export type calculatedGoldInfo = {
+export type CalculatedGoldInfo = {
   premiumPercent: string;
   premiumPrice: string;
 };
@@ -39,3 +39,5 @@ export type GoldData = {
   spotPrice: number | "";
   purity: number | "";
 };
+
+export type Currency = "EUR" | "USD" | "GBP";

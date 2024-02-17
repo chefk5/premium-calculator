@@ -1,3 +1,5 @@
+import { Currency } from "../types";
+
 export const baseURL =
   "https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU";
 
@@ -13,4 +15,4 @@ export enum currencySymbols {
   GBP = "£",
 }
 
-export const currenciesList = ["USD", "EUR", "GBP"];
+export const currenciesList: Currency[] = ["USD", "EUR", "GBP"];

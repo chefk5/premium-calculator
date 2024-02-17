@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native";
 
 export const colors = {
-  background: "#000",
-  backgroundSecondary: "#2a2827",
-  ternary: "#978055",
-  secondary: "#fddea0",
-  primary: "#d4b473",
+  background: "#fff",
+  backgroundprimary: "#2a2827",
+  primary: "#947d50",
+  secondary: "#EDE1C7",
+  textBlack: "#000",
   error: "#ff0000",
+  colorLight: "#D4B473",
+  white: "#fff",
 };
 
 export const fontSizes = {
@@ -22,16 +24,9 @@ export const mainStyles = StyleSheet.create({
     borderColor: "#d6d7da",
   },
   marginH: {
-    marginHorizontal: 10,
+    marginHorizontal: "2%",
   },
   marginV: {
-    marginVertical: 10,
-  },
-
-  card: {
-    marginVertical: 10,
-    borderRadius: 10,
-    backgroundColor: colors.backgroundSecondary,
-    padding: 10,
+    marginVertical: "2%",
   },
 });

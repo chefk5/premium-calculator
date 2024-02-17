@@ -35,7 +35,7 @@ export const FilteredInput: FC<FilteredInputProps> = ({
       onChangeText={handleInput}
       keyboardType={keyboardType}
       placeholder={placeholder}
-      placeholderTextColor={colors.ternary}
+      placeholderTextColor={colors.primary}
       returnKeyType={"next"}
       onSubmitEditing={onSubmitEditing}
       blurOnSubmit={false}
@@ -47,9 +47,8 @@ const styles = StyleSheet.create({
   input: {
     color: colors.primary,
     borderColor: colors.primary,
-    borderWidth: 1,
-    marginVertical: 5,
-    borderRadius: 5,
+    borderWidth: 2,
+    borderRadius: 12,
     padding: 10,
     fontSize: fontSizes.md,
   },

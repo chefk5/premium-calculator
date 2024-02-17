@@ -1,11 +1,11 @@
-import { GoldData, calculatedGoldInfo } from "../types";
+import { GoldData, CalculatedGoldInfo } from "../types";
 
 export function calculateGoldPremium({
   purchasePrice,
   coinWeightInGrams,
   spotPrice,
   purity,
-}: GoldData): calculatedGoldInfo {
+}: GoldData): CalculatedGoldInfo {
   // Convert the weight from grams to troy ounces
   const coinWeightInOunces = Number(coinWeightInGrams) / 31.1;
 

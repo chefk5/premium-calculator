@@ -4,6 +4,7 @@ import { createContext, useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { colors } from "../styles/theme";
 import { BlurView } from "expo-blur";
+import { PaperProvider } from "react-native-paper";
 
 type ContextType = {
   currency: string;
@@ -18,19 +19,34 @@ export default function Layout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            title: "Premium Calculator",
-            headerShown: true,
-            headerStyle: {
-              backgroundColor: colors.background,
-            },
-            headerTintColor: colors.primary,
-          }}
-        />
-      </Stack>
+      <PaperProvider>
+        <Stack screenOptions={{ headerShadowVisible: false }}>
+          <Stack.Screen
+            name="index"
+            options={{
+              title: "Enter data",
+              headerShown: true,
+              headerStyle: {
+                backgroundColor: colors.background,
+              },
+              headerTintColor: colors.primary,
+            }}
+          />
+          <Stack.Screen
+            name="result"
+            options={{
+              title: "Results",
+              headerShown: true,
+              headerStyle: {
+                backgroundColor: colors.background,
+              },
+              headerTintColor: colors.primary,
+              headerBackTitleVisible: false,
+              animation: "none",
+            }}
+          />
+        </Stack>
+      </PaperProvider>
     </QueryClientProvider>
   );
 }

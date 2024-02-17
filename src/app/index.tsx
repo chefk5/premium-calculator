@@ -1,18 +1,32 @@
-import { StyleSheet } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { colors } from "../styles/theme";
 import PremiumForm from "../components/cards/PremiumForm";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 import useCustomQuery from "../hooks/useCustomQuery";
-import { useSettingsStore } from "./stores/useSettingsStore";
+import { usePremiumStore } from "./stores/premiumStore";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Page() {
-  const currency = useSettingsStore((state) => state.currency);
+  const currency = usePremiumStore((state) => state.currency);
   const { data, isLoading, error } = useCustomQuery(currency);
 
   return (
-    <ScrollView style={styles.main} keyboardShouldPersistTaps="always">
+    <KeyboardAwareScrollView
+      enableAutomaticScroll={true}
+      extraScrollHeight={30}
+      enableResetScrollToCoords={true}
+      keyboardOpeningTime={0}
+      style={styles.main}
+      bounces={false}
+    >
       <PremiumForm livePrice={data} isLoading={isLoading} error={error} />
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 }
 

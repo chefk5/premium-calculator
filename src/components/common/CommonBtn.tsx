@@ -13,24 +13,24 @@ const CommonBtn = ({ onPressFunc }: Props) => {
       onPress={onPressFunc}
       style={({ pressed }) => [
         styles.container,
-        { backgroundColor: pressed ? colors.primary : colors.ternary },
+        { backgroundColor: pressed ? colors.primary : colors.primary },
       ]}
     >
-      <StyledText color={colors.secondary}>Calculate</StyledText>
+      <StyledText color={colors.white}>Calculate</StyledText>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.ternary,
+    backgroundColor: colors.primary,
     width: "40%",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
     ...mainStyles.marginV,
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 12,
   },
 });
 
