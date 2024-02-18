@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { colors, fontSizes } from "../../styles/theme";
+import { useTheme } from "react-native-paper";
 
 type Props = {
   children: React.ReactNode;
@@ -23,13 +24,15 @@ type Props = {
 };
 
 const StyledText = (props: Props) => {
+  const theme = useTheme();
+
   const { children, size, fontWeight, color, customStyles } = props;
   return (
     <Text
       style={[
         styles.text,
         { ...customStyles },
-        { color: color || colors.primary },
+        { color: color || theme.colors.primary },
         { fontSize: size || fontSizes.md },
         { fontWeight: fontWeight || "500" },
       ]}

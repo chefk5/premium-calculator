@@ -8,12 +8,16 @@ interface PremiumState {
   calculatePremium: (data: GoldData) => void;
   changeCurrency: (selectedCurrency: Currency) => void;
   currency: Currency;
+  isDarkMode: boolean;
+  changeTheme: (isDarkMode: boolean) => void;
 }
 
 export const usePremiumStore = create<PremiumState>((set) => ({
+  isDarkMode: false,
   premiumPrice: "0",
   premiumPercent: "0",
   currency: "USD",
+  changeTheme: (isDarkMode) => set(() => ({ isDarkMode: !isDarkMode })),
   changeCurrency: (selectedCurrency: Currency) =>
     set(() => ({ currency: selectedCurrency })),
   calculatePremium: (data) =>

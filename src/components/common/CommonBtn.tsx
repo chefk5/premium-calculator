@@ -2,34 +2,25 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import StyledText from "./styledText";
 import { colors, mainStyles } from "../../styles/theme";
+import { Button, useTheme } from "react-native-paper";
 
 type Props = {
   onPressFunc: () => void;
 };
 
 const CommonBtn = ({ onPressFunc }: Props) => {
+  const theme = useTheme();
+
   return (
-    <Pressable
-      onPress={onPressFunc}
-      style={({ pressed }) => [
-        styles.container,
-        { backgroundColor: pressed ? colors.primary : colors.primary },
-      ]}
-    >
-      <StyledText color={colors.white}>Calculate</StyledText>
-    </Pressable>
+    <Button mode="contained" onPress={onPressFunc} style={styles.container}>
+      Calculate
+    </Button>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
-    width: "40%",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    ...mainStyles.marginV,
-    padding: 10,
+    padding: 2,
     borderRadius: 12,
   },
 });

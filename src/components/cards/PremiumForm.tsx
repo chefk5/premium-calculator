@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  Keyboard,
-} from "react-native";
+import { View, StyleSheet, ActivityIndicator, Keyboard } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { mainStyles, colors, fontSizes } from "../../styles/theme";
 import PremiumResult from "./PremiumResult";
@@ -15,6 +9,8 @@ import { TextInput } from "react-native-gesture-handler";
 import CurrencyBtns from "../CurrencyBtns";
 import { router } from "expo-router";
 import { usePremiumStore } from "../../app/stores/premiumStore";
+import { Button, Text } from "react-native-paper";
+import StyledText from "../common/styledText";
 
 type Props = {
   livePrice: number | undefined;
@@ -64,10 +60,9 @@ const PremiumForm = ({ livePrice, isLoading, error }: Props) => {
     <>
       <View style={styles.container}>
         <View>
-          <Text style={styles.label}>Currency</Text>
+          <StyledText customStyles={styles.label}>Currency</StyledText>
           <CurrencyBtns />
-          <View></View>
-          <Text style={styles.label}>Market Price</Text>
+          <StyledText customStyles={styles.label}>Market Price</StyledText>
           {/* {isLoading && (
             <ActivityIndicator
               size={"small"}
@@ -76,9 +71,9 @@ const PremiumForm = ({ livePrice, isLoading, error }: Props) => {
             />
           )} */}
           {error && (
-            <Text style={styles.labelError}>
+            <StyledText customStyles={styles.labelError}>
               (Failed to fetch market price)
-            </Text>
+            </StyledText>
           )}
 
           <FilteredInput
@@ -92,7 +87,9 @@ const PremiumForm = ({ livePrice, isLoading, error }: Props) => {
             }}
           />
 
-          <Text style={styles.label}>Price ({currency})</Text>
+          <StyledText customStyles={styles.label}>
+            Price ({currency})
+          </StyledText>
           <FilteredInput
             value={String(goldData.purchasePrice)}
             placeholder="How much did you pay?"
@@ -103,7 +100,7 @@ const PremiumForm = ({ livePrice, isLoading, error }: Props) => {
               inputRefs.current[1] = element;
             }}
           />
-          <Text style={styles.label}>Weight</Text>
+          <StyledText customStyles={styles.label}>Weight</StyledText>
           <FilteredInput
             value={String(goldData.coinWeightInGrams)}
             placeholder="Weight (in grams)"
@@ -114,7 +111,7 @@ const PremiumForm = ({ livePrice, isLoading, error }: Props) => {
               inputRefs.current[2] = element;
             }}
           />
-          <Text style={styles.label}>Purity</Text>
+          <StyledText customStyles={styles.label}>Purity</StyledText>
           <FilteredInput
             value={String(goldData.purity)}
             placeholder="Gold Purity (%)"
@@ -155,7 +152,7 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.md,
   },
   label: {
-    color: colors.primary,
+    // color: colors.primary,
     paddingBottom: 10,
     paddingTop: 10,
     fontSize: fontSizes.md,

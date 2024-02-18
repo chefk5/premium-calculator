@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { TextInput, StyleSheet, TextInputProps } from "react-native";
 import { colors, fontSizes } from "../../styles/theme";
+import { useTheme } from "react-native-paper";
 
 interface FilteredInputProps extends TextInputProps {
   value: string;
@@ -17,6 +18,7 @@ export const FilteredInput: FC<FilteredInputProps> = ({
   onSubmitEditing,
 }) => {
   //const inputRef = useRef<TextInput>(null);
+  const theme = useTheme();
 
   const handleInput = (text: string) => {
     const filteredValue = text.replace(/[^0-9,.]/g, "");
@@ -30,7 +32,10 @@ export const FilteredInput: FC<FilteredInputProps> = ({
   return (
     <TextInput
       ref={inputRef}
-      style={styles.input}
+      style={[
+        styles.input,
+        { color: theme.colors.primary, borderColor: theme.colors.primary },
+      ]}
       value={value}
       onChangeText={handleInput}
       keyboardType={keyboardType}
@@ -45,8 +50,6 @@ export const FilteredInput: FC<FilteredInputProps> = ({
 
 const styles = StyleSheet.create({
   input: {
-    color: colors.primary,
-    borderColor: colors.primary,
     borderWidth: 2,
     borderRadius: 12,
     padding: 10,
